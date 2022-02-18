@@ -2,11 +2,26 @@ plugins {
     id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.microsoft.azure.azurewebapp' version '1.1.0'
+}
+
+azurewebapp {
+    subscription = '61347ae3-ab33-4a05-b414-3b5d9a6b1ffd'
+    resourceGroup = 'employeemanageritraRG'
+    appName = 'employeemanageritra'
+    pricingTier = 'B2'
+    region = 'westeurope'
+    runtime {
+        os = 'Linux'
+        webContainer = 'Java SE'
+        javaVersion = 'Java 11'
+    }
+
 }
 
 group = 'com.app'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+//sourceCompatibility = '15'
 
 repositories {
     mavenCentral()
@@ -25,7 +40,12 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+node{
+    download=true
+}
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
